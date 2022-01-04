@@ -38,14 +38,14 @@ describe("ZeroXSwapBridge", function () {
 
   describe("Actions", function () {
     it("Test API", async function () {
-      let req_0x = await fetch(`https://polygon.api.0x.org/swap/v1/quote?buyToken=0x8f3cf7ad23cd3cadbd9735aff958023239c6a063&sellToken=MATIC&sellAmount=100000000000000000`)
+      let req_0x = await fetch(`https://polygon.api.0x.org/swap/v1/quote?buyToken=0x8f3cf7ad23cd3cadbd9735aff958023239c6a063&sellToken=MATIC&sellAmount=1000000000000000000`)
       let data_0x = await req_0x.json()
 
       const _bridgeEncodedCalls = [zeroXSwapBridge.interface.encodeFunctionData(
           "swapETH",
           [
             ethers.utils.parseEther("1"),
-            [data_0x['data']]
+            data_0x['data']
           ],
       )]
 

@@ -9,11 +9,11 @@ contract ZeroXSwapBridge {
 
     function swapETH(
         uint256 ethAmount,
-        bytes[] calldata encodedCall
+        bytes calldata encodedCall
     ) external {
         console.log('MATIC', address(this).balance);
 
-        (bool isSuccess, bytes memory result) = zeroXAddress.call(abi.encode(encodedCall));
+        (bool isSuccess, bytes memory result) = zeroXAddress.call{value: ethAmount}(encodedCall);
 
         if (!isSuccess) {
             assembly {
